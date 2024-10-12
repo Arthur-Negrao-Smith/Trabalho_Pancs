@@ -12,6 +12,9 @@ def print_menu() -> None:
     """
     print(menu)
 
+def printar_lista_pancs():
+    pass
+
 
 def inserir_panc(lista_pancs:dict, nome:str, dias_consumo:int, tamanho:float) -> None:
     lista_pancs[nome] = {DIAS_CONSUMO: dias_consumo, TAMANHO:tamanho}
