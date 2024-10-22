@@ -135,16 +135,19 @@ while executar:
             mensagemErro("Opção inválida")
             
     elif opcao == '3':
-        try:
-            inicio = int(input("Digite o índice do item inicial do trecho: "))
-        except ValueError:
-            mensagemErro("O valor digitado não é um índice")
-            continue
-        try:
-            fim = int(input("Digite o índice do item final do trecho: "))
-        except ValueError:
-            mensagemErro("O valor digitado não é um índice")
-            continue
+        valido = False
+        while not valido: # Irá validar as respostas
+            try:
+                inicio = int(input("Digite o índice do item inicial do trecho: "))
+            except ValueError:
+                mensagemErro("O valor digitado não é um índice")
+                continue
+            try:
+                fim = int(input("Digite o índice do item final do trecho: "))
+                valido = True
+            except ValueError:
+                mensagemErro("O valor digitado não é um índice")
+                continue
 
         if inicio < 1 or inicio > final or fim > final:
             mensagemErro("Intervalo inválido")
