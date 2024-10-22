@@ -44,13 +44,16 @@ lista_pancs = [
     }
             ]
 
+def cabecalho() -> None:
+    print(f"{'-':-^50}")
+    print(f"{' LISTA DE PANCS ':-^50}")
+    print(f"{'-':-^50}")
+
 def menu() -> None:
         """
         Irá mostrar o menu na tela
         """
-        print(f"{'-':-^50}")
-        print(f"{' LISTA DE PANCS ':-^50}")
-        print(f"{'-':-^50}")
+        cabecalho()
         print(f"-----{' 1. Visualizar lista completa ':-<45}")
         print(f"-----{' 2. Visualizar um item da lista ':-<45}")
         print(f"-----{' 3. Visualizar um trecho da lista ':-<45}")
@@ -71,8 +74,12 @@ def lista_completa(final: int) -> None:
         print(f" {tamanho}: {lista_pancs[i][tamanho]}")
         print(f"{'-':-^50}")
 
-def mensagemErro(erro_text: str) -> None:
-    print(f'{CORES['vermelho']}{erro_text}{CORES['limpar']}')
+def mensagemErro(texto: str) -> None:
+    print(f'{CORES['vermelho']}{texto}{CORES['limpar']}')
+
+def mensagemAviso(texto: str) -> None:
+    print(f'{CORES['azul']}{texto}{CORES['limpar']}')
+
 
 executar = True
 while executar:
@@ -85,9 +92,7 @@ while executar:
             
 
     elif opcao == "2":
-        print(f"{'-':-^50}")
-        print(f"{' LISTA DE PANCS ':-^50}")
-        print(f"{'-':-^50}")
+        cabecalho()
         print(f"-----{' 1. Busca por índice ':-<45}")
         print(f"-----{' 2. Busca por nome popular ':-<45}")
         print(f"{'-':-^50}")
@@ -123,7 +128,7 @@ while executar:
                     print(f"{'-':-^50}")
                     encontrada = True
             if not encontrada:
-                print("Planta não encontrada")
+                mensagemAviso("Planta não encontrada")
         
         else:
             mensagemErro("Opção inválida")
