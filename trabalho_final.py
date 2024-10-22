@@ -61,23 +61,35 @@ def menu() -> None:
         print(f"-----{' 5. Sair ':-<45}")
         print(f"{'-':-^50}")
 
+def buscar_item(indice_busca: int) -> None:
+    """
+    Mostrará um item em específico da lista
+    """
+    print(f"{'-':-^50}")
+    print(f"{CORES['ciano']}{indice_busca+1}{CORES['limpar']} {nomep}: {CORES['roxo']}{lista_pancs[indice_busca][nomep]}{CORES['limpar']}")
+    print(f" {nomec}: {lista_pancs[indice_busca][nomec]}")
+    print(f" {energia}: {lista_pancs[indice_busca][energia]}")
+    print(f" {tamanho}: {lista_pancs[indice_busca][tamanho]}")
+    print(f"{'-':-^50}")
+
 def lista_completa(final: int) -> None:
     """
     Irá mostrar a lista completa das pancs
     """
     print(f"{CORES['amarelo']}{' LISTA DE PANCS ':-^50}{CORES['limpar']}")
     for i in range (0, final):
-        print(f"{'-':-^50}")
-        print(f"{CORES['ciano']}{i+1}{CORES['limpar']} {nomep}: {CORES['roxo']}{lista_pancs[i][nomep]}{CORES['limpar']}")
-        print(f" {nomec}: {lista_pancs[i][nomec]}")
-        print(f" {energia}: {lista_pancs[i][energia]}")
-        print(f" {tamanho}: {lista_pancs[i][tamanho]}")
-        print(f"{'-':-^50}")
+        buscar_item(i)
 
 def mensagemErro(texto: str) -> None:
+    """
+    Mostrará uma mensagem com coloração vermelha para o erro
+    """
     print(f'{CORES['vermelho']}{texto}{CORES['limpar']}')
 
 def mensagemAviso(texto: str) -> None:
+    """
+    Mostrará uma mensagem com coloração amarela para o aviso
+    """
     print(f'{CORES['azul']}{texto}{CORES['limpar']}')
 
 
@@ -90,7 +102,6 @@ while executar:
     if opcao == '1':
         lista_completa(final)
             
-
     elif opcao == "2":
         cabecalho()
         print(f"-----{' 1. Busca por índice ':-<45}")
@@ -101,14 +112,9 @@ while executar:
             try:
                 indice_busca = int(input("Qual o índice do item que você deseja visualizar? "))
                 if indice_busca > final:
-                    mensagemErro(f"Opção inválida. A lista possui apenas {final} itens")
+                    mensagemAviso(f"Opção inválida. A lista possui apenas {final} itens")
                 else:
-                    print(f"{'-':-^50}")
-                    print(f"{indice_busca} {nomep}: {lista_pancs[indice_busca-1][nomep]}")
-                    print(f" {nomec}: {lista_pancs[indice_busca-1][nomec]}")
-                    print(f" {energia}: {lista_pancs[indice_busca-1][energia]}")
-                    print(f" {tamanho}: {lista_pancs[indice_busca-1][tamanho]}")
-                    print(f"{'-':-^50}")
+                    buscar_item(indice_busca - 1)
             except ValueError:
                 mensagemErro("Opção não é um índice")
             
@@ -120,12 +126,7 @@ while executar:
             encontrada = False
             for i in range(0,final):
                 if lista_pancs[i][nomep].lower() == nome_busca:
-                    print(f"{'-':-^50}")
-                    print(f"{i+1} {nomep}: {lista_pancs[i][nomep]}")
-                    print(f" {nomec}: {lista_pancs[i][nomec]}")
-                    print(f" {energia}: {lista_pancs[i][energia]}")
-                    print(f" {tamanho}: {lista_pancs[i][tamanho]}")
-                    print(f"{'-':-^50}")
+                    buscar_item(i)
                     encontrada = True
             if not encontrada:
                 mensagemAviso("Planta não encontrada")
@@ -151,12 +152,7 @@ while executar:
         else:
             print(f"{' LISTA DE PANCS ':-^50}")
             for i in range (inicio-1,fim):
-                print(f"{'-':-^50}")
-                print(f"{i+1} {nomep}: {lista_pancs[i][nomep]}")
-                print(f" {nomec}: {lista_pancs[i][nomec]}")
-                print(f" {energia}: {lista_pancs[i][energia]}")
-                print(f" {tamanho}: {lista_pancs[i][tamanho]}")
-                print(f"{'-':-^50}")
+                buscar_item(i)
             
 
     elif opcao == '4':
