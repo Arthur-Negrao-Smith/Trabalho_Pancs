@@ -1,9 +1,20 @@
+# Constantes
 energia = 'Energia em kcal'
 tamanho = 'Tamanho da folha em metros'
 nomec = 'Nome cientifíco da planta'
 nomep = 'Nome popular da planta'
 
-lista_pancs = []
+# Adicionando cores
+CORES = {
+    "limpar": "\033[m",
+    "vermelho": "\033[31m",
+    "amarelo": "\033[33m",
+    "azul": "\033[34m",
+    "roxo": "\033[35m",
+    "verde": "\033[32m",
+    "ciano": "\033[36m"
+}
+
 lista_pancs = [
      {
         nomep: 'jambú',
@@ -33,7 +44,6 @@ lista_pancs = [
     }
             ]
 
-
 def menu() -> None:
         """
         Irá mostrar o menu na tela
@@ -52,15 +62,17 @@ def lista_completa(final: int) -> None:
     """
     Irá mostrar a lista completa das pancs
     """
-    print(f"{' LISTA DE PANCS ':-^50}")
+    print(f"{CORES['amarelo']}{' LISTA DE PANCS ':-^50}{CORES['limpar']}")
     for i in range (0, final):
         print(f"{'-':-^50}")
-        print(f"{i+1} {nomep}: {lista_pancs[i][nomep]}")
+        print(f"{CORES['ciano']}{i+1}{CORES['limpar']} {nomep}: {CORES['roxo']}{lista_pancs[i][nomep]}{CORES['limpar']}")
         print(f" {nomec}: {lista_pancs[i][nomec]}")
         print(f" {energia}: {lista_pancs[i][energia]}")
         print(f" {tamanho}: {lista_pancs[i][tamanho]}")
         print(f"{'-':-^50}")
 
+def mensagemErro(erro_text: str) -> None:
+    print(f'{CORES['vermelho']}{erro_text}{CORES['limpar']}')
 
 executar = True
 while executar:
@@ -84,7 +96,7 @@ while executar:
             try:
                 indice_busca = int(input("Qual o índice do item que você deseja visualizar? "))
                 if indice_busca > final:
-                    print(f"Opção inválida. A lista possui apenas {final} itens")
+                    mensagemErro(f"Opção inválida. A lista possui apenas {final} itens")
                 else:
                     print(f"{'-':-^50}")
                     print(f"{indice_busca} {nomep}: {lista_pancs[indice_busca-1][nomep]}")
@@ -93,10 +105,10 @@ while executar:
                     print(f" {tamanho}: {lista_pancs[indice_busca-1][tamanho]}")
                     print(f"{'-':-^50}")
             except ValueError:
-                print("Opção não é um índice")
+                mensagemErro("Opção não é um índice")
             
             except:
-                print("Houve um erro no valor digitado")
+                mensagemErro("Houve um erro no valor digitado")
 
         elif busca == '2':
             nome_busca = str(input("Qual o nome popular da planta que você deseja visualizar? ")).lower()
@@ -114,22 +126,22 @@ while executar:
                 print("Planta não encontrada")
         
         else:
-            print("Opção inválida")
+            mensagemErro("Opção inválida")
             
     elif opcao == '3':
         try:
             inicio = int(input("Digite o índice do item inicial do trecho: "))
         except ValueError:
-            print("O valor digitado não é um índice")
+            mensagemErro("O valor digitado não é um índice")
             continue
         try:
             fim = int(input("Digite o índice do item final do trecho: "))
         except ValueError:
-            print("O valor digitado não é um índice")
+            mensagemErro("O valor digitado não é um índice")
             continue
 
         if inicio < 1 or inicio > final or fim > final:
-            print("Intervalo inválido")
+            mensagemErro("Intervalo inválido")
 
         else:
             print(f"{' LISTA DE PANCS ':-^50}")
@@ -156,10 +168,10 @@ while executar:
                     if energia_novo_item < 0:
                         energia_novo_item *= -1
                 except ValueError:
-                    print("Não é um valor energético válido")
+                    mensagemErro("Não é um valor energético válido")
                     continue
                 except:
-                    print("Houve um erro no valor digitado")
+                    mensagemErro("Houve um erro no valor digitado")
                     continue
 
                 try:
@@ -168,10 +180,10 @@ while executar:
                         tamanho_novo_item *= -1
                     valido = True
                 except ValueError:
-                    print("Não é um valor de tamanho de folhas válido")
+                    mensagemErro("Não é um valor de tamanho de folhas válido")
                     continue
                 except:
-                    print("Houve um erro no valor digitado")
+                    mensagemErro("Houve um erro no valor digitado")
                     continue
 
             novo_item = {
@@ -189,4 +201,4 @@ while executar:
         executar = False
 
     else:
-        print("Opção inválida. Digite um valor válido (1, 2, 3, 4 ou 5)")
+        mensagemErro("Opção inválida. Digite um valor válido (1, 2, 3, 4 ou 5)")
