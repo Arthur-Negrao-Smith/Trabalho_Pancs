@@ -96,7 +96,7 @@ def mensagemErro(texto: str) -> None:
     Argumentos:
         texto: Texto que deseja exibir
     """
-    print(f'{CORES['vermelho']}{texto}{CORES['limpar']}')
+    print(f"{CORES['vermelho']}{texto}{CORES['limpar']}")
 
 def mensagemAviso(texto: str) -> None:
     """
@@ -105,7 +105,7 @@ def mensagemAviso(texto: str) -> None:
     Argumentos:
         texto: Texto que deseja exibir
     """
-    print(f'{CORES['ciano']}{texto}{CORES['limpar']}')
+    print(f"{CORES['ciano']}{texto}{CORES['limpar']}")
 
 def inputColorido(texto: str, cor: str = 'amarelo') -> str:
     """
