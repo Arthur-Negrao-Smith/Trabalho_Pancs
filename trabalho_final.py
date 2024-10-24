@@ -1,3 +1,6 @@
+# Criado por Débora Dyane e Arthur Negrão
+# Código do Github do projeto: https://github.com/Arthur-Negrao-Smith/Trabalho_Pancs.git
+
 # Constantes da lista
 ENERGIA = 'Energia em kcal'
 TAMANHO = 'Tamanho da folha em metros'
