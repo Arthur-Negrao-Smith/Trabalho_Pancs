@@ -1,8 +1,8 @@
-# Constantes
-energia = 'Energia em kcal'
-tamanho = 'Tamanho da folha em metros'
-nomec = 'Nome cientifíco da planta'
-nomep = 'Nome popular da planta'
+# Constantes da lista
+ENERGIA = 'Energia em kcal'
+TAMANHO = 'Tamanho da folha em metros'
+NOMEC = 'Nome cientifíco da planta'
+NOMEP = 'Nome popular da planta'
 
 # Adicionando cores
 CORES = {
@@ -17,36 +17,36 @@ CORES = {
 
 lista_pancs = [
      {
-        nomep: 'jambú',
-        nomec: 'acmella oleracea',
-        energia: 32,
-        tamanho: 0.045
+        NOMEP: 'jambú',
+        NOMEC: 'acmella oleracea',
+        ENERGIA: 32,
+        TAMANHO: 0.045
     },
 
     {
-        nomep: 'taperebá',
-        nomec: 'spondias mombin',
-        energia: 40,
-        tamanho: 0.06
+        NOMEP: 'taperebá',
+        NOMEC: 'spondias mombin',
+        ENERGIA: 40,
+        TAMANHO: 0.06
     },
 
     {
-        nomep: 'tucumã',
-        nomec: 'astrocaryum aculeatum',
-        energia: 474,
-        tamanho: 0.10
+        NOMEP: 'tucumã',
+        NOMEC: 'astrocaryum aculeatum',
+        ENERGIA: 474,
+        TAMANHO: 0.10
     },
     {
-        nomep: 'açaí',
-        nomec: 'euterpe oleracea',
-        energia: 60,
-        tamanho: 200.5
+        NOMEP: 'açaí',
+        NOMEC: 'euterpe oleracea',
+        ENERGIA: 60,
+        TAMANHO: 200.5
     }
             ]
 
 def cabecalho() -> None:
     print(f"{'-':-^50}")
-    print(f"{' LISTA DE PANCS ':-^50}")
+    print(f"{CORES['verde']}{' LISTA DE PANCS ':-^50}{CORES['limpar']}")
     print(f"{'-':-^50}")
 
 def menu() -> None:
@@ -66,17 +66,17 @@ def buscar_item(indice_busca: int) -> None:
     Mostrará um item em específico da lista
     """
     print(f"{'-':-^50}")
-    print(f"{CORES['ciano']}{indice_busca+1}{CORES['limpar']} {nomep}: {CORES['roxo']}{lista_pancs[indice_busca][nomep]}{CORES['limpar']}")
-    print(f" {nomec}: {lista_pancs[indice_busca][nomec]}")
-    print(f" {energia}: {lista_pancs[indice_busca][energia]}")
-    print(f" {tamanho}: {lista_pancs[indice_busca][tamanho]}")
+    print(f"{CORES['ciano']}{indice_busca+1}{CORES['limpar']} {NOMEP}: {CORES['roxo']}{lista_pancs[indice_busca][NOMEP]}{CORES['limpar']}")
+    print(f" {NOMEC}: {lista_pancs[indice_busca][NOMEC]}")
+    print(f" {ENERGIA}: {lista_pancs[indice_busca][ENERGIA]}")
+    print(f" {TAMANHO}: {lista_pancs[indice_busca][TAMANHO]}")
     print(f"{'-':-^50}")
 
 def lista_completa(final: int) -> None:
     """
     Irá mostrar a lista completa das pancs
     """
-    print(f"{CORES['amarelo']}{' LISTA DE PANCS ':-^50}{CORES['limpar']}")
+    print(f"{CORES['verde']}{' LISTA DE PANCS ':-^50}{CORES['limpar']}")
     for i in range (0, final):
         buscar_item(i)
 
@@ -92,25 +92,33 @@ def mensagemAviso(texto: str) -> None:
     """
     print(f'{CORES['azul']}{texto}{CORES['limpar']}')
 
+def inputColorido(texto: str, cor: str = 'amarelo') -> str:
+    """
+    Irá mostrar a mensagem do inputColorido de forma colorida
+    """
+    print(f'{CORES[cor]}{texto}{CORES["limpar"]}', end='')
+    mensagem = input()
+    return mensagem
+
 
 executar = True
 while executar:
     final = len(lista_pancs)
     menu()
-    opcao = str(input("Digite uma opção: "))
+    opcao = str(inputColorido("Digite uma opção: "))
 
     if opcao == '1':
         lista_completa(final)
             
     elif opcao == "2":
         cabecalho()
-        print(f"-----{' 1. Busca por índice ':-<45}")
+        print(f"-----{f' 1. Busca por índice ':-<45}")
         print(f"-----{' 2. Busca por nome popular ':-<45}")
         print(f"{'-':-^50}")
-        busca = str(input("Você deseja fazer uma busca por índice ou por nome? (1 ou 2) "))
+        busca = str(inputColorido("Você deseja fazer uma busca por índice ou por nome? (1 ou 2) "))
         if busca == '1':
             try:
-                indice_busca = int(input("Qual o índice do item que você deseja visualizar? "))
+                indice_busca = int(inputColorido("Qual o índice do item que você deseja visualizar? "))
                 if indice_busca > final:
                     mensagemAviso(f"Opção inválida. A lista possui apenas {final} itens")
                 else:
@@ -122,10 +130,10 @@ while executar:
                 mensagemErro("Houve um erro no valor digitado")
 
         elif busca == '2':
-            nome_busca = str(input("Qual o nome popular da planta que você deseja visualizar? ")).lower()
+            nome_busca = str(inputColorido("Qual o nome popular da planta que você deseja visualizar? ")).lower()
             encontrada = False
             for i in range(0,final):
-                if lista_pancs[i][nomep].lower() == nome_busca:
+                if lista_pancs[i][NOMEP].lower() == nome_busca:
                     buscar_item(i)
                     encontrada = True
             if not encontrada:
@@ -138,12 +146,12 @@ while executar:
         valido = False
         while not valido: # Irá validar as respostas
             try:
-                inicio = int(input("Digite o índice do item inicial do trecho: "))
+                inicio = int(inputColorido("Digite o índice do item inicial do trecho: "))
             except ValueError:
                 mensagemErro("O valor digitado não é um índice")
                 continue
             try:
-                fim = int(input("Digite o índice do item final do trecho: "))
+                fim = int(inputColorido("Digite o índice do item final do trecho: "))
                 valido = True
             except ValueError:
                 mensagemErro("O valor digitado não é um índice")
@@ -160,15 +168,15 @@ while executar:
 
     elif opcao == '4':
         if final==50:
-            print("Não é possível adicionar mais itens à lista")
+            mensagemAviso("Não é possível adicionar mais itens à lista")
 
         else:
-            nomep_novo_item = str(input('Qual o nome popular da planta (str)? ' )).lower()
-            nomec_novo_item = str(input('Qual o nome científico da planta (str)? ')).lower()
+            nomep_novo_item = str(inputColorido('Qual o nome popular da planta (str)? ' )).lower()
+            nomec_novo_item = str(inputColorido(f'Qual o nome científico da planta (str)? ')).lower()
             valido = False
             while not valido: # Teste de validade das respostas
                 try:
-                    energia_novo_item = int(input('Qual o valor energético em Kcal da planta (int)? '))
+                    energia_novo_item = int(inputColorido('Qual o valor energético em Kcal da planta (int)? '))
                     if energia_novo_item < 0:
                         energia_novo_item *= -1
                 except ValueError:
@@ -179,22 +187,22 @@ while executar:
                     continue
 
                 try:
-                    tamanho_novo_item = float(input('Qual o tamanho médio das folhas dessa planta? (float) '))
+                    tamanho_novo_item = float(inputColorido('Qual o TAMANHO médio das folhas dessa planta? (float) '))
                     if tamanho_novo_item < 0:
                         tamanho_novo_item *= -1
                     valido = True
                 except ValueError:
-                    mensagemErro("Não é um valor de tamanho de folhas válido")
+                    mensagemErro("Não é um valor de TAMANHO de folhas válido")
                     continue
                 except:
                     mensagemErro("Houve um erro no valor digitado")
                     continue
 
             novo_item = {
-                nomep: nomep_novo_item,
-                nomec: nomec_novo_item,
-                energia: energia_novo_item,
-                tamanho: tamanho_novo_item
+                NOMEP: nomep_novo_item,
+                NOMEC: nomec_novo_item,
+                ENERGIA: energia_novo_item,
+                TAMANHO: tamanho_novo_item
                 }
                     
             lista_pancs.append(novo_item)
@@ -202,6 +210,7 @@ while executar:
             lista_completa(final)
 
     elif opcao == '5':
+        print(f"{CORES['azul']}Obrigado por usar o nosso Software :){CORES['limpar']}")
         executar = False
 
     else:
