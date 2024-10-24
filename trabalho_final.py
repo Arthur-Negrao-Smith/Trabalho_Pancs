@@ -64,17 +64,23 @@ def menu() -> None:
 def buscar_item(indice_busca: int) -> None:
     """
     Mostrará um item em específico da lista
+    
+    Argumentos:
+        indice_busca: posição do item desejado
     """
     print(f"{'-':-^50}")
     print(f"{CORES['ciano']}{indice_busca+1}{CORES['limpar']} {NOMEP}: {CORES['roxo']}{lista_pancs[indice_busca][NOMEP]}{CORES['limpar']}")
-    print(f" {NOMEC}: {lista_pancs[indice_busca][NOMEC]}")
-    print(f" {ENERGIA}: {lista_pancs[indice_busca][ENERGIA]}")
-    print(f" {TAMANHO}: {lista_pancs[indice_busca][TAMANHO]}")
+    print(f" {NOMEC}: {CORES['amarelo']}{lista_pancs[indice_busca][NOMEC]}{CORES['limpar']}")
+    print(f" {ENERGIA}: {CORES['verde']}{lista_pancs[indice_busca][ENERGIA]}{CORES['limpar']}")
+    print(f" {TAMANHO}: {CORES['azul']}{lista_pancs[indice_busca][TAMANHO]}{CORES['limpar']}")
     print(f"{'-':-^50}")
 
 def lista_completa(final: int) -> None:
     """
     Irá mostrar a lista completa das pancs
+    
+    Argumentos:
+        final: total de itens da lista
     """
     print(f"{CORES['verde']}{' LISTA DE PANCS ':-^50}{CORES['limpar']}")
     for i in range (0, final):
@@ -83,18 +89,31 @@ def lista_completa(final: int) -> None:
 def mensagemErro(texto: str) -> None:
     """
     Mostrará uma mensagem com coloração vermelha para o erro
+    
+    Argumentos:
+        texto: Texto que deseja exibir
     """
     print(f'{CORES['vermelho']}{texto}{CORES['limpar']}')
 
 def mensagemAviso(texto: str) -> None:
     """
-    Mostrará uma mensagem com coloração amarela para o aviso
+    Mostrará uma mensagem com coloração azulada para o aviso
+    
+    Argumentos:
+        texto: Texto que deseja exibir
     """
-    print(f'{CORES['azul']}{texto}{CORES['limpar']}')
+    print(f'{CORES['ciano']}{texto}{CORES['limpar']}')
 
 def inputColorido(texto: str, cor: str = 'amarelo') -> str:
     """
-    Irá mostrar a mensagem do inputColorido de forma colorida
+    Irá mostrar a mensagem do input de forma colorida
+        
+    Argumentos:
+        texto: Texto que deseja exibir
+        cor: Cor a qual deseja exibir o texto, por padrão é amarelo
+
+    Retorno:
+        Retorna a string inserida pelo usuário
     """
     print(f'{CORES[cor]}{texto}{CORES["limpar"]}', end='')
     mensagem = input()
@@ -109,14 +128,15 @@ while executar:
 
     if opcao == '1':
         lista_completa(final)
-            
+    
+    # Opção de buscar item específico
     elif opcao == "2":
         cabecalho()
         print(f"-----{f' 1. Busca por índice ':-<45}")
         print(f"-----{' 2. Busca por nome popular ':-<45}")
         print(f"{'-':-^50}")
         busca = str(inputColorido("Você deseja fazer uma busca por índice ou por nome? (1 ou 2) "))
-        if busca == '1':
+        if busca == '1': # Busca por índice
             try:
                 indice_busca = int(inputColorido("Qual o índice do item que você deseja visualizar? "))
                 if indice_busca > final:
@@ -129,7 +149,7 @@ while executar:
             except:
                 mensagemErro("Houve um erro no valor digitado")
 
-        elif busca == '2':
+        elif busca == '2': # Busca por nome
             nome_busca = str(inputColorido("Qual o nome popular da planta que você deseja visualizar? ")).lower()
             encontrada = False
             for i in range(0,final):
@@ -141,7 +161,8 @@ while executar:
         
         else:
             mensagemErro("Opção inválida")
-            
+        
+    # Buscar intervalo
     elif opcao == '3':
         valido = False
         while not valido: # Irá validar as respostas
@@ -165,7 +186,7 @@ while executar:
             for i in range (inicio-1,fim):
                 buscar_item(i)
             
-
+    # Adicionar itens a lista
     elif opcao == '4':
         if final==50:
             mensagemAviso("Não é possível adicionar mais itens à lista")
@@ -209,9 +230,11 @@ while executar:
             final += 1
             lista_completa(final)
 
+    # Finalizar programa
     elif opcao == '5':
         print(f"{CORES['azul']}Obrigado por usar o nosso Software :){CORES['limpar']}")
         executar = False
 
+    # Opção que não seja de 1 a 5
     else:
         mensagemErro("Opção inválida. Digite um valor válido (1, 2, 3, 4 ou 5)")
