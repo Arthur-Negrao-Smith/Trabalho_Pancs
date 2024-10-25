@@ -43,7 +43,103 @@ lista_pancs = [
         NOMEP: 'açaí',
         NOMEC: 'euterpe oleracea',
         ENERGIA: 60,
-        TAMANHO: 200.5
+        TAMANHO: 2.5
+    },
+    {
+        NOMEP: 'buriti',
+        NOMEC: 'mauritia flexuosa',
+        ENERGIA: 217,
+        TAMANHO: 1.8
+    },
+    {
+        NOMEP: 'biribá',
+        NOMEC: 'annona mucosa',
+        ENERGIA: 67,
+        TAMANHO: 0.18 
+    },
+    {
+        NOMEP: 'babaçú',
+        NOMEC: 'attalea speciosa',
+        ENERGIA: 420,
+        TAMANHO: 7.5
+    },
+    {
+        NOMEP: 'pupunha',
+        NOMEC: 'bactris gasipaes',
+        ENERGIA: 351,
+        TAMANHO: 1.5
+    },
+    {
+        NOMEP: 'bacaba',
+        NOMEC: 'oenocarpus bacaba',
+        ENERGIA: 110,
+        TAMANHO: 5.5
+    },
+    {
+        NOMEP: 'piquiá',
+        NOMEC: 'caryocar villosum',
+        ENERGIA: 268,
+        TAMANHO: 0.1
+    },
+    {
+        NOMEP: 'maxixe',
+        NOMEC: 'cucumis anguria',
+        ENERGIA: 18,
+        TAMANHO: 0.11
+    },
+    {
+        NOMEP: 'ingá',
+        NOMEC: 'inga edulis',
+        ENERGIA: 53,
+        TAMANHO: 0.16
+    },
+    {
+        NOMEP: 'uxi',
+        NOMEC: 'endopleura uchi',
+        ENERGIA: 253,
+        TAMANHO: 0.15
+    },
+    {
+        NOMEP: 'muruci / murici',
+        NOMEC: 'byrsonima crassifolia',
+        ENERGIA: 70,
+        TAMANHO: 0.12
+    },
+    {
+        NOMEP: 'cupuaçú',
+        NOMEC: 'theobroma grandiflorum',
+        ENERGIA: 50,
+        TAMANHO: 0.19
+    },
+    {
+        NOMEP: 'jaca',
+        NOMEC: 'artocarpus heterophyllus',
+        ENERGIA: 70,
+        TAMANHO: 0.19
+    },
+    {
+        NOMEP: 'jambo',
+        NOMEC: 'syzygium malaccense',
+        ENERGIA: 25,
+        TAMANHO: 0.23
+    },
+    {
+        NOMEP: 'vitória-régia',
+        NOMEC: 'victoria amazonica',
+        ENERGIA: 33,
+        TAMANHO: 2.0
+    },
+    {
+        NOMEP: 'abiu',
+        NOMEC: 'pouteria caimito',
+        ENERGIA: 95,
+        TAMANHO: 0.13
+    },
+    {
+        NOMEP: 'urtiga',
+        NOMEC: 'laportea aestuans',
+        ENERGIA: 40,
+        TAMANHO: 0.11
     }
             ]
 
