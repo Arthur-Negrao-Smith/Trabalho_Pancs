@@ -1,6 +1,8 @@
 # Criado por Débora Dyane e Arthur Negrão
 # Código do Github do projeto: https://github.com/Arthur-Negrao-Smith/Trabalho_Pancs.git
 
+from os import system, name
+
 # Constantes da lista
 ENERGIA = 'Energia em kcal'
 TAMANHO = 'Tamanho da folha em metros'
@@ -143,6 +145,12 @@ lista_pancs = [
     }
             ]
 
+def limpar() -> None:
+    """
+    Irá limpar o terminal independente do sistema operacional
+    """
+    system('cls' if name == 'nt' else 'clear')
+
 def cabecalho() -> None:
     print(f"{'-':-^50}")
     print(f"{CORES['verde']}{' LISTA DE PANCS ':-^50}{CORES['limpar']}")
@@ -222,14 +230,17 @@ def inputColorido(texto: str, cor: str = 'amarelo') -> str:
 executar = True
 while executar:
     final = len(lista_pancs)
+    limpar()
     menu()
     opcao = str(inputColorido("Digite uma opção: "))
 
     if opcao == '1':
         lista_completa(final)
+        espera = inputColorido("Pressione enter para continuar: ")
     
     # Opção de buscar item específico
     elif opcao == "2":
+        limpar()
         cabecalho()
         print(f"-----{f' 1. Busca por índice ':-<45}")
         print(f"-----{' 2. Busca por nome popular ':-<45}")
@@ -260,6 +271,8 @@ while executar:
         
         else:
             mensagemErro("Opção inválida")
+
+        espera = inputColorido("Pressione enter para continuar: ")
         
     # Buscar intervalo
     elif opcao == '3':
@@ -281,9 +294,11 @@ while executar:
             mensagemErro("Intervalo inválido")
 
         else:
-            print(f"{' LISTA DE PANCS ':-^50}")
+            print(f"{CORES['verde']}{' LISTA DE PANCS ':-^50}{CORES['limpar']}")
             for i in range (inicio-1,fim):
                 buscar_item(i)
+
+        espera = inputColorido("Pressione enter para continuar: ")
             
     # Adicionar itens a lista
     elif opcao == '4':
@@ -328,6 +343,7 @@ while executar:
             lista_pancs.append(novo_item)
             final += 1
             lista_completa(final)
+        espera = inputColorido("Pressione enter para continuar: ")
 
     # Finalizar programa
     elif opcao == '5':
@@ -337,3 +353,4 @@ while executar:
     # Opção que não seja de 1 a 5
     else:
         mensagemErro("Opção inválida. Digite um valor válido (1, 2, 3, 4 ou 5)")
+        espera = inputColorido("Pressione enter para continuar: ")
